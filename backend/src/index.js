@@ -22,7 +22,7 @@ app.use(cors({
 
 
 app.use("/api/auth", authRoutes); //whenever we hit the auth rout we'd like to hit teh file associated with auth.route
-app.use("/api/message", messageRoutes); 
+app.use("/api/messages", messageRoutes); 
 
 app.listen(PORT, () => {
     console.log("Server running on PORT: " + PORT);

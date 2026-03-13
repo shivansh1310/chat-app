@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage"
 import { Routes, Route, Navigate } from "react-router-dom";
 import { axiosInstance } from "./lib/axios";
 import { useAuthStore } from "./store/useAuthStore";
+import { useThemeStore } from "./store/useThemeStore";
 import { useEffect } from "react";
 
 import { Loader } from "lucide-react";
@@ -19,12 +20,18 @@ import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { theme } = useThemeStore();
 
   useEffect( () => {
     checkAuth();
   }, [checkAuth])
+
+  useEffect( () => {
+    document.documentElement.setAttribute('data-theme', theme )
+  }, [theme] )
+
   
-  console.log({authUser});
+  // console.log({authUser});
 
   if ( isCheckingAuth && !authUser ) return ( 
       <div className="flex items-center justify-center h-screen">
